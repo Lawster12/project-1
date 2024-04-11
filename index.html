@@ -4,16 +4,38 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="./assets/css/style.css">
     <title>Song App</title>
+
+    <!-- jquery -->
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 </head>
 <body class="bg-gradient-to-r from-sky-300 to-indigo-700">
+    <!-- search modal -->
+    <div id="search-modal-container">
+        <div id="search-modal-content" class="rounded bg-green-100">
+            <header>
+                <strong class="text-xl">Search for Song</strong>
+            </header>
+
+            <main class="flex justify-center pt-2 pb-2">
+                <input type="text" class="border-2 rounded w-full" id="search-input">
+            </main>
+
+            <footer class="flex justify-center gap-2">
+                <button class="bg-red-600 rounded p-1 text-white p-2">Cancel</button>
+                <button class="bg-green-500 rounded p-1 text-white p-2">Search</button>
+            </footer>
+        </div>
+    </div>
+
     <header>
         <h1 class="text-center text-6xl font-bold m-10">Song App</h1>
     </header>
 
     <main class="w-full flex justify-evenly text-2xl text-center my-2">
         <section class="bg-gradient-to-r from-purple-500 to-pink-500 h-screen w-10/12 rounded border-dashed border-4 border-white container p-10 mx-8">
-            <input type="text" placeholder="Song Title" class="my-2 border-solid border-black text-center">
+            <button type="button" id="new-search" class="bg-green-500 rounded p-1 text-white p-2">New Search</button>
             <ul>
                 <li class="my-2"><a href="#">Example Link 1</a></li>
                 <li class="my-2"><a href="#">Example Link 2</a></li>
@@ -38,7 +60,7 @@
 
     <!--<footer>
         Footer!
-    </footer> -->
+    </footer> -->    
     <script src="./assets/js/data-sources/spotify.js"></script>
     <script src="./assets/js/index.js"></script>
 </body>

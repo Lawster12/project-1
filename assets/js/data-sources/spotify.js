@@ -1,4 +1,18 @@
 
+/*
+
+    Hi there,
+    Looks like you've stumbled upon my code, here's how to use it:
+
+    in another .js file, like 'index.js', you can query for a track by using the following:
+
+    spotify.searchForTrack('Hooked on a Feeling').then(data => {
+        // -- use data here -- \\
+    })
+
+
+*/
+
 // credentials
 const spotifyCredentials = {
     clientId: 'ceb813af694e47b692b02a34d82c3b43',
@@ -23,7 +37,7 @@ async function getAuthToken () {
     return data.access_token
 }
 
-export async function searchForTrack (trackName) {
+async function searchForTrack (trackName) {
     const authToken = await getAuthToken()
 
     const res = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(trackName)}&type=track`, {
@@ -36,4 +50,8 @@ export async function searchForTrack (trackName) {
 
     const data = await res.json()
     return data.tracks.items[0]
+}
+
+const spotify = {
+    searchForTrack
 }

@@ -1,0 +1,23 @@
+
+
+#search-modal-container {
+    width: 100%;
+    
+    position: fixed;
+    
+    top: 10px;
+    
+    display: flex;
+    justify-content: center;
+    justify-self: center;
+    
+}
+
+#search-modal-content {
+    width: 100%;
+
+    max-width: 700px;
+    min-width: 350px;
+
+    padding: 10px;    
+}

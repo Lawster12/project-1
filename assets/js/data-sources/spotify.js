@@ -10,6 +10,8 @@
         // -- use data here -- \\
     })
 
+    Here's the spotify documentation on the object that it returns: 
+    https://developer.spotify.com/documentation/web-api/reference/search
 
 */
 

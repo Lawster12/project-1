@@ -13,23 +13,27 @@ async function getAuthToken () {
             'Authorization': 'Basic ' + btoa(spotifyCredentials.clientId + ':' + spotifyCredentials.clientSecret),
             'Content-Type': 'application/x-www-form-urlencoded'
         },
-        form: {
+        body: new URLSearchParams({
             grant_type: 'client_credentials'
-        }
+        })
     })
 
-    console.log(res)
+    const data = await res.json()
+
+    return data.access_token
 }
 
-async function searchForTrack (trackName) {
-    const res = await fetch('https://api.spotify.com/v1/search', {
+export async function searchForTrack (trackName) {
+    const authToken = await getAuthToken()
+
+    const res = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(trackName)}&type=track`, {
         method: 'GET',
         cache: 'no-cache',
         headers: {
-
+            'Authorization': `Bearer ${authToken}`
         }
     })
 
+    const data = await res.json()
+    return data.tracks.items[0]
 }
-
-getAuthToken()

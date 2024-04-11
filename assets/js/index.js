@@ -1,4 +1,9 @@
 const searchModalRootEl = $('#search-modal-container')
+const searchModalCancelBtn = $('#search-modal-cancel')
+
+function closeModal() {
+    searchModalRootEl.css('display', 'none')
+}
 
 function toggleModal() {
     // check modal display
@@ -14,3 +19,4 @@ function toggleModal() {
 }
 
 $('#new-search').on("click", toggleModal)
+searchModalCancelBtn.on("click", closeModal)

@@ -28,6 +28,13 @@
             class="border-2 rounded w-full"
             id="search-input"
           />
+
+          <img
+            class="search-modal-loading-spinner"
+            src="https://i.gifer.com/ZKZg.gif"
+            alt="loading"
+            style="width: 50px; display: none"
+          />
         </main>
 
         <footer class="flex justify-center gap-2">
@@ -81,9 +88,8 @@
       <section
         class="bg-gradient-to-t from-gray-500 to-gray-900 h-screen w-10/12 rounded border-dashed border-4 border-white container p-10 mx-8"
       >
-        <h2 class="my-2">Song Title</h2>
-        <div></div>
-        <button class="my-2">Open Modal</button>
+        <h2 id="song-title-display" class="my-2">No song selected</h2>
+        <img class="song-album-art-display" alt="" />
       </section>
     </main>
 

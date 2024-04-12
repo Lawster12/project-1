@@ -39,10 +39,10 @@ async function getAuthToken () {
     return data.access_token
 }
 
-async function searchForTrack (trackName) {
+async function searchForTrack (query) {
     const authToken = await getAuthToken()
 
-    const res = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(trackName)}&type=track`, {
+    const res = await fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=track`, {
         method: 'GET',
         cache: 'no-cache',
         headers: {
@@ -51,7 +51,30 @@ async function searchForTrack (trackName) {
     })
 
     const data = await res.json()
-    return data.tracks.items[0]
+    
+    const targetTrack = data.tracks.items[0]
+    const artistName = targetTrack.artists[0].name
+    const albumName = targetTrack.album.name
+    const releaseDate = targetTrack.album.release_date
+    const trackNumber = targetTrack.track_number
+    const albumTracks = targetTrack.album.total_tracks
+    const externalURL = targetTrack.external_urls.spotify
+    const trackName = targetTrack.name
+    const explicit = targetTrack.explicit
+    const albumArt = targetTrack.album.images[0].url
+    const trackData = {
+        artistName,
+        albumName,
+        releaseDate,
+        trackNumber,
+        albumTracks,
+        externalURL,
+        explicit,
+        albumArt,
+        trackName: query
+    }
+
+    return trackData
 }
 
 const spotify = {

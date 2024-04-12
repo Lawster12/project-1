@@ -74,14 +74,15 @@ function search() {
             yearEstablishedEl.text(`Est. ${musicBrainzData.yearEstablished}`)
             searchResultEl.append(yearEstablishedEl)
             if (musicBrainzData.isPerforming === null){
-                isPerformingEl.text("This band is still performing");
+                isPerformingEl.text("This band/artist is still performing");
             }
             else{
-                isPerformingEl.text("This band is no longer together") 
+                isPerformingEl.text("This band/artist is no longer together") 
             }
             searchResultEl.append(isPerformingEl)
             externalUrlEl.text("Open in Spotify")
             externalUrlEl.attr("href", spotifyData.externalURL)
+            externalUrlEl.attr("target", '_blank')
             searchResultEl.append(externalUrlEl)
         })
     })

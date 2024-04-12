@@ -17,7 +17,10 @@
   <body class="bg-gradient-to-b from-cyan-600 via-green-900 to-green-500">
     <!-- search modal -->
     <div id="search-modal-container">
-      <div id="search-modal-content" class="rounded bg-green-100">
+      <div
+        id="search-modal-content"
+        class="transition-all duration-100 ease-in-out bg-white-500 hover:bg-gradient-to-r from-green-500 via-green-800 to-green-500 p-4 rounded-md rounded bg-green-100"
+      >
         <header>
           <strong class="text-xl">Search for Song</strong>
         </header>
@@ -40,13 +43,13 @@
         <footer class="flex justify-center gap-2">
           <button
             id="search-modal-cancel"
-            class="bg-red-600 rounded p-1 text-white p-2"
+            class="bg-red-600 rounded p-1 text-white p-2 hover:bg-blue-600"
           >
             Cancel
           </button>
           <button
             id="search-modal"
-            class="bg-green-500 rounded p-1 text-white p-2"
+            class="bg-green-500 rounded p-1 text-white p-2 hover:bg-blue-600"
           >
             Search
           </button>
@@ -70,7 +73,7 @@
         <button
           type="button"
           id="new-search"
-          class="bg-green-500 rounded p-1 text-white p-2"
+          class="bg-green-500 rounded p-1 text-white p-2 hover:bg-blue-600"
         >
           New Search
         </button>

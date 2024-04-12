@@ -20,3 +20,5 @@ function toggleModal() {
 
 $('#new-search').on("click", toggleModal)
 searchModalCancelBtn.on("click", closeModal)
+
+$('#clear').click(() => $('.history').css('display', 'none'));

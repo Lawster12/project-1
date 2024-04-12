@@ -21,3 +21,11 @@
 
     padding: 10px;    
 }
+
+.text-gradient {
+    background: linear-gradient(#2b322b, #1DB954); 
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}

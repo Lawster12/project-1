@@ -1,16 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Song App</title>
-    
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>    
+
+    <script
+      src="https://code.jquery.com/jquery-3.7.1.min.js"
+      integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+      crossorigin="anonymous"
+    ></script>
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <link rel="stylesheet" href="./assets/css/style.css">
-</head>
-<body class="bg-gradient-to-r from-green-500 via-green-800 to-green-500">
+    <link rel="stylesheet" href="./assets/css/style.css" />
+  </head>
+  <body class="bg-gradient-to-r from-green-500 via-green-800 to-green-500">
     <!-- search modal -->
     <div id="search-modal-container">
         <div id="search-modal-content" class="transition-all duration-100 ease-in-out bg-white-500 hover:bg-gradient-to-r from-green-500 via-green-800 to-green-500 p-4 rounded-md rounded bg-green-100">
@@ -18,10 +22,20 @@
                 <strong class="text-xl">Search for Song</strong>
             </header>
 
-            <main class="flex justify-center pt-2 pb-2">
-                <input type="text" class="border-2 rounded w-full" id="search-input">
-            </main>
+        <main class="flex justify-center pt-2 pb-2">
+          <input
+            type="text"
+            class="border-2 rounded w-full"
+            id="search-input"
+          />
 
+          <img
+            class="search-modal-loading-spinner"
+            src="https://i.gifer.com/ZKZg.gif"
+            alt="loading"
+            style="width: 50px; display: none"
+          />
+        </main>
             <footer class="flex justify-center gap-2">
                 <button id="search-modal-cancel" class="bg-red-600 rounded p-1 text-white p-2 hover:bg-blue-600">Cancel</button>
                 <button class="bg-green-500 rounded p-1 text-white p-2 hover:bg-blue-600">Search</button>
@@ -48,17 +62,23 @@
             CONTENT
         </section>
 
-        <section class="bg-gradient-to-t from-gray-500 to-gray-900 h-screen w-10/12 rounded border-dashed border-4 border-white container p-10 mx-8">
-            <h2 class="my-2">Song Title</h2>
-            <div>
-                
-            </div>
-            <button class="my-2">Open Modal</button>
-        </section>
 
+      <section
+        class="bg-gradient-to-t from-gray-500 to-gray-900 h-screen w-10/12 rounded border-dashed border-4 border-white container p-10 mx-8"
+      >
+        CONTENT
+      </section>
+
+      <section
+        class="bg-gradient-to-t from-gray-500 to-gray-900 h-screen w-10/12 rounded border-dashed border-4 border-white container p-10 mx-8"
+      >
+        <h2 id="song-title-display" class="my-2">No song selected</h2>
+        <img class="song-album-art-display" alt="" />
+      </section>
     </main>
 
     <script src="./assets/js/data-sources/spotify.js"></script>
+    <script src="./assets/js/data-sources/musicBrainz.js"></script>
     <script src="./assets/js/index.js"></script>
-</body>
+  </body>
 </html>

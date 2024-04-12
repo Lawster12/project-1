@@ -88,4 +88,9 @@ function search() {
 
 $('#new-search').on("click", toggleModal)
 searchModalCancelBtn.on("click", closeModal)
+<<<<<<< HEAD
+
+$('#clear').click(() => $('.history').css('display', 'none'));
+=======
 searchModalSearchBtn.on('click', search)
+>>>>>>> 786666bd74db3ae48b404eb0827fda892c8d8f1e

@@ -14,9 +14,12 @@ const trackNumberEl = $("<p>")
 const albumTracksEl = $("<p>")
 const explicitEl = $("<p>")
 const isPerformingEl = $("<p>")
-
-
 const externalUrlEl = $("<a>")
+
+const historylist = $('#history')
+const historyListItem = $("<li>")
+const searchHistoryArray = []
+
 // column 3
 const songTitleDisplayEl = $('#song-title-display')
 const songAlbumArtDisplayEl = $('.song-album-art-display')
@@ -49,6 +52,9 @@ function search() {
             closeModal()
             searchModalLoadingSpinner.css('display', 'none')
             searchModalInputEl.val('')
+
+            //create new array of list items for search history
+
 
             // all network fetching is done, do stuff here
             songTitleDisplayEl.text(spotifyData.trackName)
@@ -84,6 +90,21 @@ function search() {
             externalUrlEl.attr("href", spotifyData.externalURL)
             externalUrlEl.attr("target", '_blank')
             searchResultEl.append(externalUrlEl)
+            
+            //add new searches to front of array and save it to local storage
+            searchHistoryArray.unshift(spotifyData.trackName)
+            localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray))
+            
+            // Clear existing history
+            historylist.empty(); 
+            const trackHistory = JSON.parse(localStorage.getItem("searchHistory"));
+            if (trackHistory) {
+                for (const history of trackHistory) {
+                    const historyItem = $('<li>').text(history);
+                    // Append list item to #history
+                    historylist.append(historyItem); 
+                }
+            }
         })
     })
 }
@@ -92,6 +113,10 @@ $('#new-search').on("click", toggleModal)
 searchModalCancelBtn.on("click", closeModal)
 
 $('#clear').click(() => $('.history').css('display', 'none'));
+//clear local storage of song array
+$("#clear").on("click", function(){
+    localStorage.clear();
+});
 
 searchModalSearchBtn.on('click', search)
 

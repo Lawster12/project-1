@@ -100,7 +100,8 @@ function search() {
             const trackHistory = JSON.parse(localStorage.getItem("searchHistory"));
             if (trackHistory) {
                 for (const history of trackHistory) {
-                    const historyItem = $('<li>').text(history);
+                    const historyLink = $('<button>').attr('class', 'reSearch').text(history);
+                    const historyItem = $('<li>').append(historyLink);
                     // Append list item to #history
                     historylist.append(historyItem); 
                 }

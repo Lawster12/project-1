@@ -18,7 +18,7 @@ const externalUrlEl = $("<a>")
 
 const historylist = $('#history')
 const historyListItem = $("<li>")
-const searchHistoryArray = []
+let searchHistoryArray = []
 
 // column 3
 const songTitleDisplayEl = $('#song-title-display')
@@ -41,12 +41,45 @@ function toggleModal() {
     }
 }
 
-function search() {
+function addToSearchHistory(value) {
+    renderSearchHistory()
+
+    if (searchHistoryArray.includes(value)) {
+        return
+    }
+
+    //add new searches to front of array and save it to local storage
+    searchHistoryArray.unshift(value)
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray))
+    renderSearchHistory()
+}
+
+function renderSearchHistory() {
+    if (searchHistoryArray === null) {
+        localStorage.setItem("searchHistory", JSON.stringify([]))
+    }
+
+    // Clear existing history
+    historylist.empty(); 
+    searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory"));
+    if (searchHistoryArray) {
+        for (const history of searchHistoryArray) {
+            const historyLink = $('<button>').attr('class', 'reSearch').text(history);
+            const historyItem = $('<li>').append(historyLink);
+            historyItem.on('click', function (event) {
+                search($(this).text())
+            })
+            // Append list item to #history
+            historylist.append(historyItem); 
+        }
+    }
+}
+
+function search(query) {
     // show loading spinner
     searchModalLoadingSpinner.css('display', 'block')
 
-    const queryValue = searchModalInputEl.val()
-    spotify.searchForTrack(queryValue).then(function (spotifyData) {
+    spotify.searchForTrack(query).then(function (spotifyData) {
         console.log(spotifyData)
         getMusicBrainzArtistData(spotifyData.artistName).then(function (musicBrainzData) {
             closeModal()
@@ -90,22 +123,8 @@ function search() {
             externalUrlEl.attr("href", spotifyData.externalURL)
             externalUrlEl.attr("target", '_blank')
             searchResultEl.append(externalUrlEl)
-            
-            //add new searches to front of array and save it to local storage
-            searchHistoryArray.unshift(spotifyData.trackName)
-            localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray))
-            
-            // Clear existing history
-            historylist.empty(); 
-            const trackHistory = JSON.parse(localStorage.getItem("searchHistory"));
-            if (trackHistory) {
-                for (const history of trackHistory) {
-                    const historyLink = $('<button>').attr('class', 'reSearch').text(history);
-                    const historyItem = $('<li>').append(historyLink);
-                    // Append list item to #history
-                    historylist.append(historyItem); 
-                }
-            }
+
+            addToSearchHistory(query)
         })
     })
 }
@@ -119,5 +138,8 @@ $("#clear").on("click", function(){
     localStorage.clear();
 });
 
-searchModalSearchBtn.on('click', search)
+searchModalSearchBtn.on('click', function () {
+    search(searchModalInputEl.val())
+})
 
+renderSearchHistory()

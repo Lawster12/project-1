@@ -2,8 +2,23 @@ const searchModalRootEl = $('#search-modal-container')
 const searchModalCancelBtn = $('#search-modal-cancel')
 const searchModalSearchBtn = $('#search-modal')
 const searchModalInputEl = $('#search-input')
+const topTenContainer = $('#topTenContainer') //added this variable
 const searchModalLoadingSpinner = $('.search-modal-loading-spinner')
 const searchResultEl =  $("#searchResult")
+
+
+//added scroller ribbon
+const track1 =  $("#track1") // added variable for each track 
+const track2 =  $("#track2")
+const track3 =  $("#track3")
+const track4 =  $("#track4")
+const track5 =  $("#track5")
+const track6 =  $("#track6")
+const track7 =  $("#track7")
+const track8 =  $("#track8")
+const track9 =  $("#track9")
+const track10 =  $("#track10")
+
 
 const areaofOriginEl = $("<p>")
 const yearEstablishedEl = $("<p>")
@@ -125,6 +140,22 @@ function search(query) {
             searchResultEl.append(externalUrlEl)
 
             addToSearchHistory(query)
+
+            spotify.getTopTen(spotifyData.artistid).then(function (trackStuff) {
+                console.log(trackStuff);
+                
+                track1.text(trackStuff.track1);
+                track2.text(trackStuff.track2);
+                track3.text(trackStuff.track3);
+                track4.text(trackStuff.track4);
+                track5.text(trackStuff.track5);
+                track6.text(trackStuff.track6);
+                track7.text(trackStuff.track7);
+                track8.text(trackStuff.track8);
+                track9.text(trackStuff.track9);
+                track10.text(trackStuff.track10);
+                topTenContainer.css('display', 'block')
+                })
         })
     })
 }

@@ -10,8 +10,8 @@
     display: none;
     justify-content: center;
     justify-self: center;
-
-    z-index: 8000000;
+    z-index: 8000;
+    
 }
 
 #search-modal-content {
@@ -30,3 +30,5 @@
     -webkit-text-stroke-width: 1px;
     -webkit-text-stroke-color: black;
 }
+
+

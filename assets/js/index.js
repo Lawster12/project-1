@@ -32,13 +32,17 @@ const isPerformingEl = $("<p>")
 
 
 const externalUrlEl = $("<a>")
+
+const historylist = $('#history')
+const historyListItem = $("<li>")
+let searchHistoryArray = []
+
 // column 3
 const songTitleDisplayEl = $('#song-title-display')
 const songAlbumArtDisplayEl = $('.song-album-art-display')
 
 function closeModal() {
     searchModalRootEl.css('display', 'none')
-    
 }
 
 function toggleModal() {
@@ -47,22 +51,61 @@ function toggleModal() {
     
     if (elDisplay === 'flex') {
         searchModalRootEl.css('display', 'none')
-    } 
+    }
     
     if (elDisplay === 'none') {
         searchModalRootEl.css('display', 'flex')
     }
 }
 
-function search() {
+function addToSearchHistory(value) {
+    renderSearchHistory()
+
+    if (searchHistoryArray.includes(value)) {
+        return
+    }
+
+    //add new searches to front of array and save it to local storage
+    searchHistoryArray.unshift(value)
+    localStorage.setItem("searchHistory", JSON.stringify(searchHistoryArray))
+    renderSearchHistory()
+}
+
+function renderSearchHistory() {
+    if (searchHistoryArray === null) {
+        localStorage.setItem("searchHistory", JSON.stringify([]))
+    }
+
+    // Clear existing history
+    historylist.empty(); 
+    searchHistoryArray = JSON.parse(localStorage.getItem("searchHistory"));
+    if (searchHistoryArray) {
+        for (const history of searchHistoryArray) {
+            const historyLink = $('<button>').attr('class', 'reSearch').text(history);
+            const historyItem = $('<li>').append(historyLink);
+            historyItem.on('click', function (event) {
+                search($(this).text())
+            })
+            // Append list item to #history
+            historylist.append(historyItem); 
+        }
+    }
+}
+
+function search(query) {
     // show loading spinner
     searchModalLoadingSpinner.css('display', 'block')
-    const queryValue = searchModalInputEl.val()
-    spotify.searchForTrack(queryValue).then(function (spotifyData) {
+
+    spotify.searchForTrack(query).then(function (spotifyData) {
         console.log(spotifyData)
         getMusicBrainzArtistData(spotifyData.artistName).then(function (musicBrainzData) {
+            closeModal()
             searchModalLoadingSpinner.css('display', 'none')
             searchModalInputEl.val('')
+
+            //create new array of list items for search history
+
+
             // all network fetching is done, do stuff here
             songTitleDisplayEl.text(spotifyData.trackName)
             songAlbumArtDisplayEl.attr('src', spotifyData.albumArt)
@@ -87,18 +130,19 @@ function search() {
             yearEstablishedEl.text(`Est. ${musicBrainzData.yearEstablished}`)
             searchResultEl.append(yearEstablishedEl)
             if (musicBrainzData.isPerforming === null){
-                isPerformingEl.text("This band is still performing");
+                isPerformingEl.text("This band/artist is still performing");
             }
             else{
-                isPerformingEl.text("This band is no longer together") 
+                isPerformingEl.text("This band/artist is no longer together") 
             }
             searchResultEl.append(isPerformingEl)
             externalUrlEl.text("Open in Spotify")
             externalUrlEl.attr("href", spotifyData.externalURL)
+            externalUrlEl.attr("target", '_blank')
             searchResultEl.append(externalUrlEl)
 
+            addToSearchHistory(query)
 
-            // getTopTen(spotifyData.artistid) returns info from spotify
             spotify.getTopTen(spotifyData.artistid).then(function (trackStuff) {
                 console.log(trackStuff);
                 
@@ -114,25 +158,21 @@ function search() {
                 track10.text(trackStuff.track10);
                 topTenContainer.css('display', 'block')
                 })
-
-
-
-
-
-
-
         })
     })
 }
-
-
 
 $('#new-search').on("click", toggleModal)
 searchModalCancelBtn.on("click", closeModal)
 
 $('#clear').click(() => $('.history').css('display', 'none'));
+//clear local storage of song array
+$("#clear").on("click", function(){
+    localStorage.clear();
+});
 
-searchModalSearchBtn.on('click', search)
+searchModalSearchBtn.on('click', function () {
+    search(searchModalInputEl.val())
+})
 
-
-
+renderSearchHistory()

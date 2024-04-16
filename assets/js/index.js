@@ -174,7 +174,13 @@ $("#clear").on("click", function(){
 });
 
 searchModalSearchBtn.on('click', function () {
+    if (searchModalInputEl.val() === ''){
+        throw new Error("Cannot search without a title")
+    }
+    else
+    {
     search(searchModalInputEl.val())
+}
 })
 
 renderSearchHistory()

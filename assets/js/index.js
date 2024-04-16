@@ -138,8 +138,10 @@ function search(query) {
             externalUrlEl.text("Open in Spotify")
             externalUrlEl.attr("href", spotifyData.externalURL)
             externalUrlEl.attr("target", '_blank')
-            externalUrlEl.addClass("hover:bg-blue-600 bg-green-500 rounded p-1 text-white p-2");
-            searchResultEl.append(externalUrlEl)
+            const externalUrlBtn = $('<button>')
+            externalUrlBtn.addClass("hover:bg-blue-600 bg-green-500 rounded p-1 text-white p-2");
+            externalUrlBtn.append(externalUrlEl)
+            searchResultEl.append(externalUrlBtn)
 
             addToSearchHistory(query)
 

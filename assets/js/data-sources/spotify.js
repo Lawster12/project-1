@@ -50,10 +50,13 @@ async function searchForTrack (query) {
         }
     })
 
+
+
     const data = await res.json()
     
     const targetTrack = data.tracks.items[0]
     const artistName = targetTrack.artists[0].name
+    const artistid = targetTrack.artists[0].id //added search for artists id
     const albumName = targetTrack.album.name
     const releaseDate = targetTrack.album.release_date
     const trackNumber = targetTrack.track_number
@@ -64,6 +67,7 @@ async function searchForTrack (query) {
     const albumArt = targetTrack.album.images[0].url
     const trackData = {
         artistName,
+        artistid, //added to array
         albumName,
         releaseDate,
         trackNumber,
@@ -77,6 +81,58 @@ async function searchForTrack (query) {
     return trackData
 }
 
+
+async function getTopTen (id) { //added getTopTen function and URL also searches for id specifically
+    const authToken = await getAuthToken()
+
+    const res = await fetch(`https://api.spotify.com/v1/artists/${encodeURIComponent(id)}/top-tracks`, {
+        method: 'GET',
+        cache: 'no-cache',    
+        headers: {
+            'Authorization': `Bearer ${authToken}`
+        }
+    })
+
+    if (!res.ok) {
+        throw new Error(res.ok);
+    } 
+
+    const spotifyTopTenData = await res.json()   
+    //const targetTrack = data.tracks.items[0]
+    
+   // console.log(spotifyTopTenData);
+
+    const track1 = "1. " +spotifyTopTenData.tracks[0].name
+    const track2 = "2. " +spotifyTopTenData.tracks[1].name
+    const track3 = "3. " +spotifyTopTenData.tracks[2].name
+    const track4 = "4. " +spotifyTopTenData.tracks[3].name
+    const track5 = "5. " +spotifyTopTenData.tracks[4].name
+    const track6 = "6. " +spotifyTopTenData.tracks[5].name
+    const track7 = "7. " +spotifyTopTenData.tracks[6].name
+    const track8 = "8. " +spotifyTopTenData.tracks[7].name
+    const track9 = "9. " +spotifyTopTenData.tracks[8].name
+    const track10 = "10. " +spotifyTopTenData.tracks[9].name
+
+    const trackStuff = {
+        track1,
+        track2,
+        track3,
+        track4,
+        track5,
+        track6,
+        track7,
+        track8,
+        track9,
+        track10,
+    }
+
+
+    return trackStuff
+}
+
+
+
 const spotify = {
-    searchForTrack
+    searchForTrack,
+    getTopTen
 }

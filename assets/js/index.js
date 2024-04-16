@@ -34,6 +34,7 @@ const externalUrlEl = $("<a>")
 const historylist = $('#history')
 const historyListItem = $("<li>")
 let searchHistoryArray = []
+const externalUrlBtn = $('<button>')
 
 // column 3
 const songTitleDisplayEl = $('#song-title-display')
@@ -138,7 +139,6 @@ function search(query) {
             externalUrlEl.text("Open in Spotify")
             externalUrlEl.attr("href", spotifyData.externalURL)
             externalUrlEl.attr("target", '_blank')
-            const externalUrlBtn = $('<button>')
             externalUrlBtn.addClass("transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-green-500 duration-300 rounded p-1 text-white p-2");
             externalUrlBtn.append(externalUrlEl)
             searchResultEl.append(externalUrlBtn)
@@ -174,7 +174,14 @@ $("#clear").on("click", function(){
 });
 
 searchModalSearchBtn.on('click', function () {
+    if (searchModalInputEl.val() === ''){
+        console.log("Search cannot be blank")
+        throw new Error("Cannot search without a title")
+    }
+    else
+    {
     search(searchModalInputEl.val())
+}
 })
 
 renderSearchHistory()

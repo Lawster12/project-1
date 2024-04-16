@@ -29,8 +29,6 @@ const trackNumberEl = $("<p>")
 const albumTracksEl = $("<p>")
 const explicitEl = $("<p>")
 const isPerformingEl = $("<p>")
-
-
 const externalUrlEl = $("<a>")
 
 const historylist = $('#history')

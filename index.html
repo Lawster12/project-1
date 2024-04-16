@@ -16,44 +16,43 @@
   </head>
   <body class="bg-gradient-to-b from-cyan-600 via-green-900 to-green-500">
     <!-- search modal -->
-    <div id="search-modal-container">
-      <div
-        id="search-modal-content"
-        class="transition-all duration-100 ease-in-out bg-white-500 hover:bg-gradient-to-r from-green-500 via-green-800 to-green-500 p-4 rounded-md rounded bg-green-100"
-      >
-        <header>
-          <strong class="text-xl">Search for Song</strong>
-        </header>
+    <div class="flex justify-center">
+      <div class="flex justify-center" id="search-modal-container">
+        <div
+          id="search-modal-content"
+          class="transition-all duration-100 ease-in-out bg-white-500 hover:bg-gradient-to-r from-green-500 via-green-800 to-green-500 p-4 rounded-md rounded bg-green-100"
+        >
+          <div class="flex justify-between items-center">
+            <strong class="text-xl d-block">Search for Song</strong>
+            <button id="search-modal-cancel" class="p-2 hover:bg-blue-600">
+              &times;
+            </button>
+          </div>
 
-        <main class="flex justify-center pt-2 pb-2">
-          <input
-            type="text"
-            class="border-2 rounded w-full"
-            id="search-input"
-            placeholder="Enter song name"
-          />
+          <main class="flex justify-center pt-2 pb-2">
+            <input
+              type="text"
+              class="border-2 rounded w-full"
+              id="search-input"
+              placeholder="Enter song name"
+            />
 
-          <img
-            class="search-modal-loading-spinner"
-            src="https://i.gifer.com/ZKZg.gif"
-            alt="loading"
-            style="width: 50px; display: none"
-          />
-        </main>
-        <footer class="flex justify-center gap-2">
-          <button
-            id="search-modal-cancel"
-            class="bg-red-600 rounded p-1 text-white p-2 hover:bg-blue-600"
-          >
-            Cancel
-          </button>
-          <button
-            id="search-modal"
-            class="bg-green-500 rounded p-1 text-white p-2 hover:bg-blue-600"
-          >
-            Search
-          </button>
-        </footer>
+            <img
+              class="search-modal-loading-spinner"
+              src="https://i.gifer.com/ZKZg.gif"
+              alt="loading"
+              style="width: 50px; display: none"
+            />
+          </main>
+          <footer class="flex justify-center gap-2">
+            <button
+              id="search-modal"
+              class="bg-green-500 rounded p-1 text-white p-2 hover:bg-blue-600"
+            >
+              Search
+            </button>
+          </footer>
+        </div>
       </div>
     </div>
 
@@ -94,10 +93,10 @@
         >
           New Search
         </button>
-        <ul class="history">
-          <li class="my-2"><a href="#">Example Link 1</a></li>
+        <ul id="history" class="history">
+          <!-- <li class="my-2"><a href="#">Example Link 1</a></li>
           <li class="my-2"><a href="#">Example Link 2</a></li>
-          <li class="my-2"><a href="#">Example Link 3</a></li>
+          <li class="my-2"><a href="#">Example Link 3</a></li> -->
         </ul>
         <div class="flex justify-center">
           <button class="my-2" id="clear">Clear History</button>

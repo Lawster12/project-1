@@ -99,7 +99,7 @@ function search() {
 
 
             // getTopTen(spotifyData.artistid) returns info from spotify
-            spotify.getTopTen(spotifyData.artistid).then(function (trackstuff) {
+            spotify.getTopTen(spotifyData.artistid).then(function (trackStuff) {
                 console.log(trackStuff);
                 
                 track1.text(trackStuff.track1);

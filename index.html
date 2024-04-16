@@ -4,39 +4,42 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Audio Atlas</title>
-
+    <!-- links to jquery and tailwind -->
     <script
       src="https://code.jquery.com/jquery-3.7.1.min.js"
       integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
       crossorigin="anonymous"
     ></script>
     <script src="https://cdn.tailwindcss.com"></script>
-
+    <!-- link css stylesheet -->
     <link rel="stylesheet" href="./assets/css/style.css" />
   </head>
+  <!-- sets the background as a gradient, from cyan to dark green to light green -->
   <body class="bg-gradient-to-b from-cyan-600 via-green-900 to-green-500">
     <!-- search modal -->
     <div class="flex justify-center">
       <div class="flex justify-center" id="search-modal-container">
         <div
           id="search-modal-content"
-          class="transition-all duration-100 ease-in-out bg-white-500 hover:bg-gradient-to-r from-green-500 via-green-800 to-green-500 p-4 rounded-md rounded bg-green-100"
+          class="bg-white-500 hover:bg-gradient-to-r from-green-500 via-green-800 to-green-500 p-4 rounded-md rounded bg-green-100"
         >
+        <!-- styling for search modal -->
           <div class="flex justify-between items-center">
             <strong class="text-xl d-block">Search for Song</strong>
             <button id="search-modal-cancel" class="p-2 hover:bg-blue-600">
               &times;
             </button>
           </div>
-
+          
           <main class="flex justify-center pt-2 pb-2">
+            <!-- Text input for user to search a song by track name -->
             <input
               type="text"
               class="border-2 rounded w-full"
               id="search-input"
               placeholder="Enter song name"
             />
-
+            <!-- Animated loading spinner -->
             <img
               class="search-modal-loading-spinner"
               src="https://i.gifer.com/ZKZg.gif"
@@ -45,9 +48,10 @@
             />
           </main>
           <footer class="flex justify-center gap-2">
+            <!-- Modal search button -->
             <button
               id="search-modal"
-              class="bg-green-500 rounded p-1 text-white p-2 hover:bg-blue-600"
+              class="transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-green-500 duration-300 rounded p-1 text-white p-2"
             >
               Search
             </button>
@@ -57,6 +61,7 @@
     </div>
 
     <header>
+      <!-- uses tailwind and custom css class text-gradient to add gradient styling to h1 (title) -->
       <h1 class="text-center text-6xl font-bold m-10 text-gradient">
         Audio Atlas
       </h1>
@@ -78,11 +83,12 @@
       </div>
       <div class='fade'></div>
   </div>
-
+    <!-- Sets main container for the three section elements -->
     <main
       class="w-full flex justify-evenly text-2xl text-center my-2 text-slate-300"
       id="container"
     >
+      <!-- Rotates hue 30 degrees from the body, adds border styling and margin -->
       <section
         class="backdrop-hue-rotate-30 h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8"
       >
@@ -93,32 +99,31 @@
         >
           New Search
         </button>
+        <!-- List to show previosuly searched songs -->
         <ul id="history" class="history">
-          <!-- <li class="my-2"><a href="#">Example Link 1</a></li>
-          <li class="my-2"><a href="#">Example Link 2</a></li>
-          <li class="my-2"><a href="#">Example Link 3</a></li> -->
         </ul>
         <div class="flex justify-center">
           <button class="transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-red-700 rounded p-1 text-white p-2 my-2" 
           id="clear">Clear History</button>
         </div>
       </section>
-
+      <!-- Rotates hue 60 degrees from the body, adds border styling and margin -->
       <section
         id="searchResult"
         class="backdrop-hue-rotate-60 card-gradient h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8"
       >
         Track information
       </section>
-
+      <!-- Rotates hue 90 degrees from the body, adds border styling and margin -->
       <section
         class="backdrop-hue-rotate-90 h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8"
       >
         <h2 id="song-title-display" class="my-2">No song selected</h2>
+        <!-- Displays album art for whatever song was searched -->
         <img class="song-album-art-display" alt="" />
       </section>
     </main>
-
+    <!-- API's -->
     <script src="./assets/js/data-sources/spotify.js"></script>
     <script src="./assets/js/data-sources/musicBrainz.js"></script>
     <script src="./assets/js/index.js"></script>

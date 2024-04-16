@@ -1,5 +1,5 @@
 
-
+/* Fixed poition modal container styles */
 #search-modal-container {
     width: 100%;
     
@@ -13,7 +13,7 @@
     z-index: 8000;
     
 }
-
+/* Modal content styles */
 #search-modal-content {
     width: 100%;
 
@@ -22,7 +22,7 @@
 
     padding: 10px;    
 }
-
+/* Styles for h1 text */
 .text-gradient {
     background: linear-gradient(#2b322b, #1DB954); 
     -webkit-background-clip: text;

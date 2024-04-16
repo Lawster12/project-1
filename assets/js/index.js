@@ -134,9 +134,11 @@ function search(query) {
                 isPerformingEl.text("This band/artist is no longer together") 
             }
             searchResultEl.append(isPerformingEl)
+            isPerformingEl.addClass("mb-2");
             externalUrlEl.text("Open in Spotify")
             externalUrlEl.attr("href", spotifyData.externalURL)
             externalUrlEl.attr("target", '_blank')
+            externalUrlEl.addClass("hover:bg-blue-600 bg-green-500 rounded p-1 text-white p-2");
             searchResultEl.append(externalUrlEl)
 
             addToSearchHistory(query)

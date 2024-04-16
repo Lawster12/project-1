@@ -139,7 +139,7 @@ function search(query) {
             externalUrlEl.text("Open in Spotify")
             externalUrlEl.attr("href", spotifyData.externalURL)
             externalUrlEl.attr("target", '_blank')
-            externalUrlBtn.addClass("hover:bg-blue-600 bg-green-500 rounded p-1 text-white p-2");
+            externalUrlBtn.addClass("transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-green-500 duration-300 rounded p-1 text-white p-2");
             externalUrlBtn.append(externalUrlEl)
             searchResultEl.append(externalUrlBtn)
 

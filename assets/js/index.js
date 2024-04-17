@@ -5,6 +5,7 @@ const searchModalInputEl = $('#search-input')
 const topTenContainer = $('#topTenContainer') //added this variable
 const searchModalLoadingSpinner = $('.search-modal-loading-spinner')
 const searchResultEl =  $("#searchResult")
+const newSearchButton = $('#new-search')
 
 
 //added scroller ribbon
@@ -185,3 +186,9 @@ searchModalSearchBtn.on('click', function () {
 })
 
 renderSearchHistory()
+
+$('body').on('click', function (event) {
+    if (!$(event.target).parents('#search-modal-container').length && !$(event.target).is(newSearchButton)) {
+        closeModal()
+    }
+})

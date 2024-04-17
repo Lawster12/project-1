@@ -127,7 +127,7 @@ function search(query) {
             searchResultEl.append(explicitEl)
             areaofOriginEl.text(musicBrainzData.areaOfOrigin)
             searchResultEl.append(areaofOriginEl)
-            yearEstablishedEl.text(`Est. ${musicBrainzData.yearEstablished}`)
+            yearEstablishedEl.text(`Est. or Born ${musicBrainzData.yearEstablished}`)
             searchResultEl.append(yearEstablishedEl)
             if (musicBrainzData.isPerforming === null){
                 isPerformingEl.text("This band/artist is still performing");
@@ -173,6 +173,13 @@ $('#clear').click(() => $('.history').css('display', 'none'));
 $("#clear").on("click", function(){
     localStorage.clear();
 });
+
+// //add search function based on keyup enter button: 13 is the enter key
+$("#search-input").keyup(function(e){
+    if (e.keyCode === 13){ 
+        search(searchModalInputEl.val())
+    }
+})
 
 searchModalSearchBtn.on('click', function () {
     if (searchModalInputEl.val() === ''){

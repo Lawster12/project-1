@@ -64,9 +64,9 @@ body {
     background: linear-gradient(
         90deg,
         #000,
-        transparent 30%,
-        transparent 90%,
-        #000
+        transparent 50%,
+        /* transparent 50%,
+        #000 */
     );
     inset: 0;
     pointer-event: none;

@@ -63,7 +63,7 @@
     <header>
       <!-- uses tailwind and custom css class text-gradient to add gradient styling to h1 (title) -->
       <h1 class="flex justify-center my-2">
-        <img src="assets/images/audioatlaslogo_480.png" alt="Audio Atlas logo">
+        <p class="border-solid border-black border-4 rounded shadow-xl shadow-green-500"><img src="assets/images/audioatlaslogo_480.png" alt="Audio Atlas logo"></p>
       </h1>
     </header>
 
@@ -90,12 +90,13 @@
     >
       <!-- Rotates hue 30 degrees from the body, adds border styling and margin -->
       <section
-        class="backdrop-hue-rotate-30 h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8"
+        class="backdrop-hue-rotate-30 h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8 shadow-xl shadow-black"
       >
         <button
           type="button"
           id="new-search"
-          class="transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-green-500 duration-300 rounded p-1 text-white p-2"
+          class="transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-green-500 
+          duration-300 rounded p-1 text-white p-2"
         >
           New Search
         </button>
@@ -103,24 +104,25 @@
         <ul id="history" class="history">
         </ul>
         <div class="flex justify-center">
-          <button class="transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-red-700 rounded p-1 text-white p-2 my-2" 
+          <button class="transition ease-in-out hover:-translate-y-1 hover:scale-110 hover:bg-blue-600 bg-red-700 
+          rounded p-1 text-white p-2 my-2" 
           id="clear">Clear History</button>
         </div>
       </section>
       <!-- Rotates hue 60 degrees from the body, adds border styling and margin -->
       <section
         id="searchResult"
-        class="backdrop-hue-rotate-60 card-gradient h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8"
+        class="backdrop-hue-rotate-60 card-gradient h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8 shadow-xl shadow-black"
       >
         Track information
       </section>
       <!-- Rotates hue 90 degrees from the body, adds border styling and margin -->
       <section
-        class="backdrop-hue-rotate-90 h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8"
+        class="backdrop-hue-rotate-90 h-screen w-10/12 rounded border-double border-8 border-black container p-10 mx-8 shadow-xl shadow-black"
       >
         <h2 id="song-title-display" class="my-2">No song selected</h2>
         <!-- Displays album art for whatever song was searched -->
-        <img class="song-album-art-display" alt="" />
+        <img class="song-album-art-display shadow-xl shadow-black" alt="album art" />
       </section>
     </main>
     <!-- API's -->
